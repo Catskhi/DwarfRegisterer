@@ -18,7 +18,8 @@ public class DwarfModel {
     private Long id;
 
     private String name;
-    
+
+    @Column(unique = true)
     private String email;
 
     private int age;
