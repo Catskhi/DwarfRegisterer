@@ -1,9 +1,6 @@
-package dev.catskhi.DwarfRegister;
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+package dev.catskhi.DwarfRegister.Dwarfs;
+import dev.catskhi.DwarfRegister.Quests.QuestsModel;
+import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @EntityScan
@@ -13,9 +10,17 @@ public class DwarfModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String email;
+
     private int age;
+
+    // @ManyToOne a dwarf have only one quest
+    @ManyToOne
+    @JoinColumn(name = "quests_id") // Foreign Key
+    private QuestsModel quests;
 
     public DwarfModel() {
     }
