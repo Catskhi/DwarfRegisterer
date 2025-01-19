@@ -1,10 +1,16 @@
 package dev.catskhi.DwarfRegister.Dwarfs;
 import dev.catskhi.DwarfRegister.Quests.QuestsModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+@Data
 @EntityScan
-@Table(name = "tb_dwarf_register")
+@Table(name = "tb_dwarf")
+@NoArgsConstructor
+@AllArgsConstructor
 public class DwarfModel {
 
     @Id
@@ -12,7 +18,7 @@ public class DwarfModel {
     private Long id;
 
     private String name;
-
+    
     private String email;
 
     private int age;
@@ -21,37 +27,4 @@ public class DwarfModel {
     @ManyToOne
     @JoinColumn(name = "quests_id") // Foreign Key
     private QuestsModel quests;
-
-    public DwarfModel() {
-    }
-
-    public DwarfModel(String name, String email, int age) {
-        this.name = name;
-        this.email = email;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 }
