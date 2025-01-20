@@ -1,4 +1,6 @@
 package dev.catskhi.DwarfRegister.Dwarfs;
 
-public class DwarfRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DwarfRepository extends JpaRepository<DwarfModel, Long> {
 }
