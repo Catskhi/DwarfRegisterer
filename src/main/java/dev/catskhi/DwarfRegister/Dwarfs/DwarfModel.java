@@ -14,14 +14,20 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class DwarfModel {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
     @Column(unique = true)
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @Column(name = "age")
     private int age;
 
     // @ManyToOne a dwarf have only one quest
