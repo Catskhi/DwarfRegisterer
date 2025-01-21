@@ -16,7 +16,7 @@ public class QuestsController {
         return "Created quest";
     }
 
-    @PutMapping("/update")
+    @PutMapping("/updateId")
     public String updateQuest() {
         return "Updated quest";
     }
