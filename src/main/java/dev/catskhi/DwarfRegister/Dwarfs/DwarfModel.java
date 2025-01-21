@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Data
-@EntityScan
+@Entity
 @Table(name = "tb_dwarf")
 @NoArgsConstructor
 @AllArgsConstructor
