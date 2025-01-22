@@ -44,8 +44,8 @@ public class DwarfController {
     }
 
     // Delete dwarf (Delete)
-    @DeleteMapping("/delete")
-    public String deleteDwarf() {
-        return "Deleted Dwarf";
+    @DeleteMapping("/delete/{id}")
+    public void deleteDwarf(@PathVariable Long id) {
+        dwarfService.deleteDwarf(id);
     }
 }

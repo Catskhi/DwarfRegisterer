@@ -2,18 +2,31 @@ package dev.catskhi.DwarfRegister.Quests;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("quests")
 public class QuestsController {
 
-    @GetMapping("/list")
-    public String listQuest() {
-        return "Listed quests";
+    private QuestsService questsService;
+
+    public QuestsController(QuestsService questsService) {
+        this.questsService = questsService;
     }
 
     @PostMapping("/create")
-    public String createQuest() {
-        return "Created quest";
+    public QuestsModel createQuest(@RequestBody QuestsModel quest) {
+        return questsService.createQuest(quest);
+    }
+
+    @GetMapping("/list")
+    public List<QuestsModel> listQuest() {
+        return questsService.listQuests();
+    }
+
+    @GetMapping("/list/{id}")
+    public QuestsModel listQuestById(@PathVariable Long id) {
+        return questsService.getQuestsById(id);
     }
 
     @PutMapping("/updateId")
@@ -22,7 +35,7 @@ public class QuestsController {
     }
 
     @DeleteMapping("/delete")
-    public String deleteQuest() {
-        return "Deleted quest";
+    public void deleteQuest(@PathVariable Long id) {
+        questsService.deleteQuest(id);
     }
 }

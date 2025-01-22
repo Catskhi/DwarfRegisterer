@@ -29,4 +29,9 @@ public class DwarfService {
         return dwarfRepository.save(dwarf);
     }
 
+    // Delete dwarf - it must be VOID
+    public void deleteDwarf(Long id) {
+        dwarfRepository.deleteById(id);
+    }
+
 }
