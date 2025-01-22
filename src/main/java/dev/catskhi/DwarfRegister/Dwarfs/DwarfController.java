@@ -2,9 +2,17 @@ package dev.catskhi.DwarfRegister.Dwarfs;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/dwarfs")
 public class DwarfController {
+
+    private DwarfService dwarfService;
+
+    public DwarfController(DwarfService dwarfService) {
+        this.dwarfService = dwarfService;
+    }
 
     @GetMapping("/hello")
     public String hello() {
@@ -19,8 +27,8 @@ public class DwarfController {
 
     // Show all dwarfs (Read)
     @GetMapping("/list")
-    public String showAllDwarfs() {
-        return "All dwarfs";
+    public List<DwarfModel> showAllDwarfs() {
+        return dwarfService.listDwarfs();
     }
 
     // Search Dwarf by Id (Read)
