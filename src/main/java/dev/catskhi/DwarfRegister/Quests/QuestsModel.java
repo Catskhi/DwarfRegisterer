@@ -1,4 +1,5 @@
 package dev.catskhi.DwarfRegister.Quests;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.catskhi.DwarfRegister.Dwarfs.DwarfModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,5 +24,6 @@ public class QuestsModel {
     private String difficulty;
 
     @OneToMany(mappedBy = "quests")
+    @JsonIgnore
     private List<DwarfModel> dwarf;
 }
