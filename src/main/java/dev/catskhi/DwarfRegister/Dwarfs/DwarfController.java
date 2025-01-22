@@ -21,8 +21,8 @@ public class DwarfController {
 
     // Add Dwarf (Create)
     @PostMapping("/create")
-    public String createDwarf() {
-        return "Dwarf created";
+    public DwarfModel createDwarf(@RequestBody DwarfModel dwarf) {
+        return dwarfService.createDwarf(dwarf);
     }
 
     // Show all dwarfs (Read)
@@ -32,9 +32,9 @@ public class DwarfController {
     }
 
     // Search Dwarf by Id (Read)
-    @GetMapping("/getID")
-    public String showAllDwarfsById() {
-        return "Show all dwarfs by id";
+    @GetMapping("/list/{id}")
+    public DwarfModel showDwarfsById(@PathVariable Long id) {
+        return dwarfService.getDwarfsById(id);
     }
 
     // Update dwarf data (Update)
