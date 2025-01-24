@@ -38,9 +38,9 @@ public class DwarfController {
     }
 
     // Update dwarf data (Update)
-    @PutMapping("/updateId")
-    public String updateDwarf() {
-        return "Updated Dwarf";
+    @PutMapping("/updateId/{id}")
+    public DwarfModel updateDwarf(@PathVariable Long id, @RequestBody DwarfModel updatedDwarf) {
+        return dwarfService.updateDwarf(id, updatedDwarf);
     }
 
     // Delete dwarf (Delete)

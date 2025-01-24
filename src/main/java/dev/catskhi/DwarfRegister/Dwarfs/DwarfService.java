@@ -34,4 +34,11 @@ public class DwarfService {
         dwarfRepository.deleteById(id);
     }
 
+    public DwarfModel updateDwarf(Long id, DwarfModel updatedDwarf) {
+        if (dwarfRepository.existsById(id)) {
+            updatedDwarf.setId(id);
+            return dwarfRepository.save(updatedDwarf);
+        }
+        return null;
+    }
 }
