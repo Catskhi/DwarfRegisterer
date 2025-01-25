@@ -10,9 +10,11 @@ import java.util.Optional;
 public class DwarfService {
 
     private DwarfRepository dwarfRepository;
+    private DwarfMapper dwarfMapper;
 
-    public DwarfService(DwarfRepository dwarfRepository) {
+    public DwarfService(DwarfRepository dwarfRepository, DwarfMapper dwarfMapper) {
         this.dwarfRepository = dwarfRepository;
+        this.dwarfMapper = dwarfMapper;
     }
 
     // List all dwarfs
@@ -25,8 +27,10 @@ public class DwarfService {
         return dwarfById.orElse(null);
     }
 
-    public DwarfModel createDwarf(DwarfModel dwarf) {
-        return dwarfRepository.save(dwarf);
+    public DwarfDTO createDwarf(DwarfDTO dwarfDTO) {
+        DwarfModel dwarf = dwarfMapper.map(dwarfDTO);
+        dwarf = dwarfRepository.save(dwarf);
+        return dwarfMapper.map(dwarf);
     }
 
     // Delete dwarf - it must be VOID

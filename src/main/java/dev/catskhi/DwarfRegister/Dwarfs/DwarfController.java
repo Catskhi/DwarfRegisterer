@@ -21,7 +21,7 @@ public class DwarfController {
 
     // Add Dwarf (Create)
     @PostMapping("/create")
-    public DwarfModel createDwarf(@RequestBody DwarfModel dwarf) {
+    public DwarfDTO createDwarf(@RequestBody DwarfDTO dwarf) {
         return dwarfService.createDwarf(dwarf);
     }
 
