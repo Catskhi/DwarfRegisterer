@@ -29,6 +29,9 @@ public class DwarfModel {
     @Column(name = "age")
     private int age;
 
+    @Column(name = "rank")
+    private String rank;
+
     // @ManyToOne a dwarf have only one quest
     @ManyToOne
     @JoinColumn(name = "quests_id") // Foreign Key
