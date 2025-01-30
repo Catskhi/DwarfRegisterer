@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DwarfService {
@@ -18,13 +19,16 @@ public class DwarfService {
     }
 
     // List all dwarfs
-    public List<DwarfModel> listDwarfs() {
-        return dwarfRepository.findAll();
+    public List<DwarfDTO> listDwarfs() {
+        List<DwarfModel> dwarfs = dwarfRepository.findAll();
+        return dwarfs.stream()
+                .map(dwarfMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public DwarfModel getDwarfsById(Long id) {
+    public DwarfDTO getDwarfsById(Long id) {
         Optional<DwarfModel> dwarfById = dwarfRepository.findById(id);
-        return dwarfById.orElse(null);
+        return dwarfById.map(dwarfMapper::map).orElse(null);
     }
 
     public DwarfDTO createDwarf(DwarfDTO dwarfDTO) {
@@ -38,10 +42,13 @@ public class DwarfService {
         dwarfRepository.deleteById(id);
     }
 
-    public DwarfModel updateDwarf(Long id, DwarfModel updatedDwarf) {
-        if (dwarfRepository.existsById(id)) {
+    public DwarfDTO updateDwarf(Long id, DwarfDTO dwarfDTO) {
+        Optional<DwarfModel> existentDwarf = dwarfRepository.findById(id);
+        if (existentDwarf.isPresent()) {
+            DwarfModel updatedDwarf = dwarfMapper.map(dwarfDTO);
             updatedDwarf.setId(id);
-            return dwarfRepository.save(updatedDwarf);
+            DwarfModel savedDwarf = dwarfRepository.save(updatedDwarf);
+            return dwarfMapper.map(savedDwarf);
         }
         return null;
     }
