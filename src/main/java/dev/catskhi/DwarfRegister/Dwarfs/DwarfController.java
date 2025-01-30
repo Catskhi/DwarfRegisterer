@@ -21,25 +21,25 @@ public class DwarfController {
 
     // Add Dwarf (Create)
     @PostMapping("/create")
-    public DwarfModel createDwarf(@RequestBody DwarfModel dwarf) {
+    public DwarfDTO createDwarf(@RequestBody DwarfDTO dwarf) {
         return dwarfService.createDwarf(dwarf);
     }
 
     // Show all dwarfs (Read)
     @GetMapping("/list")
-    public List<DwarfModel> showAllDwarfs() {
+    public List<DwarfDTO> showAllDwarfs() {
         return dwarfService.listDwarfs();
     }
 
     // Search Dwarf by Id (Read)
     @GetMapping("/list/{id}")
-    public DwarfModel showDwarfsById(@PathVariable Long id) {
+    public DwarfDTO showDwarfsById(@PathVariable Long id) {
         return dwarfService.getDwarfsById(id);
     }
 
     // Update dwarf data (Update)
     @PutMapping("/updateId/{id}")
-    public DwarfModel updateDwarf(@PathVariable Long id, @RequestBody DwarfModel updatedDwarf) {
+    public DwarfDTO updateDwarf(@PathVariable Long id, @RequestBody DwarfDTO updatedDwarf) {
         return dwarfService.updateDwarf(id, updatedDwarf);
     }
 
