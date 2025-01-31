@@ -26,7 +26,7 @@ public class DwarfService {
                 .collect(Collectors.toList());
     }
 
-    public DwarfDTO getDwarfsById(Long id) {
+    public DwarfDTO listDwarfsById(Long id) {
         Optional<DwarfModel> dwarfById = dwarfRepository.findById(id);
         return dwarfById.map(dwarfMapper::map).orElse(null);
     }
