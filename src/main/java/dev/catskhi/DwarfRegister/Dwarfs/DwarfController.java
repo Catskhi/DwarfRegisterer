@@ -1,5 +1,8 @@
 package dev.catskhi.DwarfRegister.Dwarfs;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +21,18 @@ public class DwarfController {
     }
 
     @GetMapping("/hello")
+    @Operation(summary = "Welcome Message", description = "This route gives a welcome message.")
     public String hello() {
         return "Hello";
     }
 
     // Add Dwarf (Create)
     @PostMapping("/create")
+    @Operation(summary = "Creates a new dwarf.", description = "Creates a new dwarf and inserts it on the database.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Dwarf successfully created."),
+            @ApiResponse(responseCode = "400", description = "Error on dwarf creation.")
+    })
     public ResponseEntity<String> createDwarf(@RequestBody DwarfDTO dwarf) {
         DwarfDTO newDwarf = dwarfService.createDwarf(dwarf);
         return ResponseEntity.status(HttpStatus.CREATED)
